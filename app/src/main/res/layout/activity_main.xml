@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.harshitbatra.hammer.MainActivity">
+    <ImageView
+        android:id="@+id/hammer"
+        android:src="@drawable/hammer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/etusername"
+        android:hint="Username"
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/etpassword"
+        android:hint="password"
+        android:layout_below="@id/etusername"
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/btnlogin"
+        android:text="Login"
+        android:layout_below="@id/etpassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/tvwarning1"
+        android:text="warning"
+        android:textSize="25dp"
+        android:layout_below="@id/etpassword"
+        android:visibility="invisible"
+        android:layout_toRightOf="@id/btnlogin"
+        android:layout_marginLeft="10dp"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/warning"
+        android:layout_marginTop="13dp"
+        android:textColor="#FF0000"
+        android:textSize="20dp"
+        android:visibility="invisible"
+        android:text="!Wrong Credentials"
+        android:layout_below="@id/etpassword"
+        android:layout_toRightOf="@id/btnlogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/tv"
+        android:text="New User? Click on Signup to create Account"
+        android:textSize="15dp"
+        android:textStyle="italic"
+        android:layout_below="@id/btnlogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/btnsignup"
+        android:layout_below="@id/tv"
+        android:text="singup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>
