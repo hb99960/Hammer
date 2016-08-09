@@ -1,8 +1,8 @@
 package com.example.harshitbatra.hammer;
 
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -67,7 +67,9 @@ public class SignupForm extends AppCompatActivity
                 String password = etpassword.getText().toString();
                 String repassword = etrepassword.getText().toString();
 
-                PostRequest signup = new PostRequest("http://www.hammertime.16mb.com/ht_signup.php",name,username,phone,email,address,city,password,repassword);
+                PostRequest signup = new PostRequest("http://www.hammertime.16mb.com/ht_signup.php",
+                        name, username, phone, email, address, city, password);
+                signup.setContext(SignupForm.this);
                 signup.execute("signup");
 
                 signup.setTaskDoneListener(new PostRequest.TaskDoneListener()

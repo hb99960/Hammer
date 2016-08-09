@@ -1,7 +1,11 @@
 package com.example.harshitbatra.hammer;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+
+import org.json.JSONException;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -10,7 +14,6 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.HashMap;
@@ -23,24 +26,30 @@ import javax.net.ssl.HttpsURLConnection;
  */
 public class PostRequest extends AsyncTask<String, Void, String>
 {
-    String username,password,url;
+    public static final String TAG = "LOG-PostRequest";
+    ProgressDialog progressDialog;
+    String username, password, url;
     TaskDoneListener taskdone;
-    String name,phone,email,address,city,repassword;
+    String name, phone, email, address, city;
+    String encodedImage, itemName, itemDescription, time, tag;
+    String currentBid;
+    Context context;
+    String loginuser;
+    int newbid;
 
-    public static final String TAG = "response";
-
-    public void setTaskDoneListener(TaskDoneListener listener)
+    public PostRequest(String url)
     {
-        taskdone = listener;
+        this.url = url;
     }
 
-    public PostRequest(String url,String username, String password)
+    public PostRequest(String url, String username, String password)
     {
         this.url = url;
         this.username = username;
         this.password = password;
     }
-    public PostRequest( String url,String name,String username,String phone,String email,String address,String city,String password,String repassword)
+
+    public PostRequest(String url, String name, String username, String phone, String email, String address, String city, String password)
     {
         this.url = url;
         this.name = name;
@@ -50,36 +59,165 @@ public class PostRequest extends AsyncTask<String, Void, String>
         this.address = address;
         this.city = city;
         this.password = password;
-        this.repassword = repassword;
+    }
+
+    public PostRequest(String url, String username, String itemName, String itemDescription, String currentBid,
+                       String time, String tag, String loginuser, int newbid, int x)
+    {
+        this.url = url;
+        this.username = username;
+        this.itemName = itemName;
+        this.itemDescription = itemDescription;
+        this.currentBid = currentBid;
+        this.time = time;
+        this.tag = tag;
+        this.loginuser = loginuser;
+        this.newbid = newbid;
+    }
+
+    public PostRequest(String url, String username, String encodedImage,
+                       String itemName, String itemDescription, String currentBid,
+                       String time, String tag, int code)
+    {
+        this.url = url;
+        this.username = username;
+        this.encodedImage = encodedImage;
+        this.itemName = itemName;
+        this.itemDescription = itemDescription;
+        this.currentBid = currentBid;
+        this.time = time;
+        this.tag = tag;
+        Log.d(TAG, "PostRequest: Encoded Image = " + encodedImage);
+    }
+
+    public PostRequest(String url, String username)
+    {
+        this.url = url;
+        this.username = username;
+    }
+
+    public PostRequest(String url, String username, String name, String description, String currentBid, String time, String tag)
+    {
+        this.url = url;
+        this.username = username;
+        itemName = name;
+        itemDescription = description;
+        this.currentBid = currentBid;
+        this.time = time;
+        this.tag = tag;
+    }
+
+    public void setTaskDoneListener(TaskDoneListener listener)
+    {
+        taskdone = listener;
+    }
+
+    public void setContext(Context context)
+    {
+        this.context = context;
     }
 
     @Override
     protected void onPreExecute()
     {
         super.onPreExecute();
+
+        if (context != null)
+        {
+            progressDialog = new ProgressDialog(context);
+            progressDialog.setMessage("Loading...");
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+        }
+
+    }
+
+    public String makeConnectionForBid()
+    {
+        HashMap<String, String> hashMap = new HashMap<>(8);
+        hashMap.put("username",username);
+        hashMap.put("itemname", itemName);
+        hashMap.put("itemdescription", itemDescription);
+        hashMap.put("bid", currentBid);
+        hashMap.put("time", time);
+        hashMap.put("tag", tag);
+        hashMap.put("loginuser", loginuser);
+        hashMap.put("currentvalue", String.valueOf(newbid));
+        Log.d(TAG, "onCreate: username = " + username + "\ntag = " + tag + "\ndesc = " + itemDescription +
+                "\naddress = " + address + "\ncity = " + city + "\nbid = " + currentBid + "\nemail = " + "\nloginUser = " + loginuser +
+                "\nitemName = " + itemName + "\ntime = " + time + "\ncurrent value = " + newbid
+                + "\nurl = " + url);
+        return performPostCall(url,hashMap);
+        //"URL",username,itemName,desc,bid,time,tag,loginUser,currentValue
+
     }
 
     public String makeConnectionLogin()
     {
-        HashMap<String,String> hashMap = new HashMap<>(2);
-        hashMap.put("username",username);
-        hashMap.put("password",password);
-        return performPostCall(url,hashMap);
+        HashMap<String, String> hashMap = new HashMap<>(2);
+        hashMap.put("username", username);
+        hashMap.put("password", password);
+
+        return performPostCall(url, hashMap);
     }
+
+    public String makeConnectionHome()
+    {
+        HashMap<String, String> hashMap = new HashMap<>(1);
+        hashMap.put("username", username);
+
+        return performPostCall(url, hashMap);
+    }
+
     public String makeConnectionSignup()
     {
-        HashMap<String,String> hashMap = new HashMap<>(8);
-        hashMap.put("name",name);
-        hashMap.put("username",username);
-        hashMap.put("phone",phone);
-        hashMap.put("email",email);
-        hashMap.put("address",address);
-        hashMap.put("city",city);
-        hashMap.put("password",password);
-        hashMap.put("repassword",repassword);
-        return performPostCall(url,hashMap);
+        HashMap<String, String> hashMap = new HashMap<>(7);
+        hashMap.put("name", name);
+        hashMap.put("username", username);
+        hashMap.put("phone", phone);
+        hashMap.put("email", email);
+        hashMap.put("address", address);
+        hashMap.put("city", city);
+        hashMap.put("password", password);
 
+        return performPostCall(url, hashMap);
     }
+
+    public String makeConnectionSell()
+    {
+        Log.d(TAG, "makeConnectionSell: current bid = " + currentBid);
+
+        HashMap<String, String> hashMap = new HashMap<>(7);
+        hashMap.put("username", username);
+        hashMap.put("encodedImage", encodedImage);
+        hashMap.put("itemName", itemName);
+        hashMap.put("itemDescription", itemDescription);
+        hashMap.put("currentBid", currentBid);
+        hashMap.put("time", time);
+        hashMap.put("tag", tag);
+        Log.d(TAG, "makeConnectionSell: current bid = " + currentBid);
+        return performPostCall(url, hashMap);
+    }
+
+    public String makeConnectionSell2()
+    {
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("username", username);
+        hashMap.put("itemName", itemName);
+        hashMap.put("itemDescription", itemDescription);
+        hashMap.put("currentBid", currentBid);
+        hashMap.put("time", time);
+        hashMap.put("tag", tag);
+
+        return performPostCall(url, hashMap);
+    }
+
+    public String makeConnectionMarket()
+    {
+        HashMap<String, String> hashMap = new HashMap<>();
+        return performPostCall(url, hashMap);
+    }
+
 
     public String performPostCall(String requestURL, HashMap<String, String> postDataParams)
     {
@@ -120,10 +258,8 @@ public class PostRequest extends AsyncTask<String, Void, String>
             else
             {
                 response = "";
-
             }
-        }
-        catch (Exception e)
+        } catch (Exception e)
         {
             e.printStackTrace();
         }
@@ -156,18 +292,40 @@ public class PostRequest extends AsyncTask<String, Void, String>
     protected String doInBackground(String[] params)
     {
         String result = "";
-        if(params[0].equals("login"))
+        if (params[0].equals("login"))
         {
             Log.d(TAG, "doInBackground: result 1 = " + result);
-            result =  makeConnectionLogin();
+            result = makeConnectionLogin();
             Log.d(TAG, "doInBackground: result 2 = " + result);
         }
-        else if(params[0].equals("signup"))
+        else if (params[0].equals("signup") || params[0].equals("profile"))
         {
-           // Log.d(TAG, "doInBackground: enter if");
+            // Log.d(TAG, "doInBackground: enter if");
             result = makeConnectionSignup();
-          //  Log.d(TAG, "doInBackground: result = " + result);
+            //  Log.d(TAG, "doInBackground: result = " + result);
         }
+        else if (params[0].equals("Sell"))
+        {
+            result = makeConnectionSell();
+        }
+        else if (params[0].equals("home"))
+        {
+            result = makeConnectionHome();
+        }
+        else if (params[0].equals("market"))
+        {
+            result = makeConnectionMarket();
+        }
+        else if (params[0].equals("SellViaFtp"))
+        {
+            result = makeConnectionSell2();
+        }
+        else if (params[0].equals("ChangeBid"))
+        {
+            result = makeConnectionForBid();
+        }
+
+        Log.d(TAG, "doInBackground: result = " + result);
         return result;
     }
 
@@ -175,12 +333,25 @@ public class PostRequest extends AsyncTask<String, Void, String>
     protected void onPostExecute(String s)
     {
         super.onPostExecute(s);
-        taskdone.onTaskDoneListener(s);
+        if (progressDialog != null)
+        {
+            progressDialog.dismiss();
+        }
+
+        try
+        {
+            Log.d(TAG, "onPostExecute: s = " + s);
+            taskdone.onTaskDoneListener(s);
+        } catch (JSONException e)
+        {
+            e.printStackTrace();
+        }
+
     }
 
     public interface TaskDoneListener
     {
-        String onTaskDoneListener(String str);
+        String onTaskDoneListener(String str) throws JSONException;
     }
 
 }

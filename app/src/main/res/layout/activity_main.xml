@@ -11,62 +11,65 @@
     tools:context="com.example.harshitbatra.hammer.MainActivity">
     <ImageView
         android:id="@+id/hammer"
-        android:src="@drawable/hammer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:src="@drawable/hammer"/>
     <EditText
         android:id="@+id/etusername"
-        android:hint="Username"
-        android:layout_centerInParent="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:hint="Username"
+        android:maxLines="1"/>
     <EditText
         android:id="@+id/etpassword"
-        android:hint="password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/etusername"
         android:layout_centerInParent="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:hint="password"
+        android:inputType="textPassword"
+        android:maxLines="1"/>
     <Button
         android:id="@+id/btnlogin"
-        android:text="Login"
-        android:layout_below="@id/etpassword"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etpassword"
+        android:text="Login"/>
     <TextView
         android:id="@+id/tvwarning1"
-        android:text="warning"
-        android:textSize="25dp"
-        android:layout_below="@id/etpassword"
-        android:visibility="invisible"
-        android:layout_toRightOf="@id/btnlogin"
-        android:layout_marginLeft="10dp"
-
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etpassword"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/btnlogin"
+        android:text="warning"
+
+        android:textSize="25dp"
+        android:visibility="invisible"/>
     <TextView
         android:id="@+id/warning"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etpassword"
         android:layout_marginTop="13dp"
+        android:layout_toRightOf="@id/btnlogin"
+        android:text="!Wrong Credentials"
         android:textColor="#FF0000"
         android:textSize="20dp"
-        android:visibility="invisible"
-        android:text="!Wrong Credentials"
-        android:layout_below="@id/etpassword"
-        android:layout_toRightOf="@id/btnlogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:visibility="invisible"/>
     <TextView
         android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnlogin"
         android:text="New User? Click on Signup to create Account"
         android:textSize="15dp"
-        android:textStyle="italic"
-        android:layout_below="@id/btnlogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:textStyle="italic"/>
     <Button
         android:id="@+id/btnsignup"
-        android:layout_below="@id/tv"
-        android:text="singup"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv"
+        android:text="singup"/>
 </RelativeLayout>
