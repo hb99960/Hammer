@@ -1,5 +1,7 @@
 package com.example.harshitbatra.hammer;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -19,13 +21,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends Activity
 {
     public static final int RC_FOR_SIGNUP = 911;
     public static final String TAG = "LOG-MainActivity";
     EditText etusername, etpassword;
     Button btnlogin, btnsignup;
-    TextView tvwarning;
+    TextView tvwarning, tvNewAccount;
+    SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -41,6 +44,7 @@ public class MainActivity extends AppCompatActivity
         btnlogin = (Button) findViewById(R.id.btnlogin);
         btnsignup = (Button) findViewById(R.id.btnsignup);
 
+        tvNewAccount = (TextView) findViewById(R.id.tv);
 
         View.OnClickListener loginClick = new View.OnClickListener()
         {
@@ -66,8 +70,6 @@ public class MainActivity extends AppCompatActivity
                         @Override
                         public String onTaskDoneListener(String str) throws JSONException
                         {
-                            tvwarning = (TextView) findViewById(R.id.warning);
-                            tvwarning.setVisibility(View.VISIBLE);
 
                             Log.d(TAG, "onTaskDoneListener: Response = " + str);
 
@@ -97,23 +99,26 @@ public class MainActivity extends AppCompatActivity
 
                             if (str.charAt(0) == 'N')
                             {
-                                tvwarning.setText("No User Found");
-                                tvwarning.setTextColor(Color.RED);
+//                                tvwarning.setText("No User Found");
+//                                tvwarning.setTextColor(Color.RED);
+                                Toast.makeText(MainActivity.this, "No user Found", Toast.LENGTH_SHORT).show();
                             }
                             else if (str.charAt(0) == 'W')
                             {
-                                tvwarning.setText("Wrong Password");
-                                tvwarning.setTextColor(Color.RED);
+                                /*tvwarning.setText("Wrong Password");
+                                tvwarning.setTextColor(Color.RED);*/
+                                Toast.makeText(MainActivity.this, "Wrong Password", Toast.LENGTH_SHORT).show();
                             }
-                            else if (status != null)
+                            if (status != null)
                             {
 
                                 if (status.charAt(0) == 't')
                                 {
 
-                                    tvwarning.setText("Successful");
+                                    /*tvwarning.setText("Successful");
                                     tvwarning.setTextColor(Color.GREEN);
-
+*/
+                                    /*Toast.makeText(MainActivity.this, "Done", Toast.LENGTH_SHORT).show();*/
                                     String username = etusername.getText().toString();
                                     String password = etpassword.getText().toString();
 
@@ -121,6 +126,17 @@ public class MainActivity extends AppCompatActivity
                                     SharedPreferences.Editor editor = settings.edit();
                                     editor.putString("session_id", str.substring(4));
                                     editor.commit();
+
+                                    sp = getApplicationContext().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+                                    SharedPreferences.Editor loginEditor = sp.edit();
+                                    loginEditor.putString("username",username);
+                                    loginEditor.putString("password",password);
+                                    loginEditor.putString("name",jsonName);
+                                    loginEditor.putString("address",jsonAddress);
+                                    loginEditor.putString("city",jsonCity);
+                                    loginEditor.putString("email",jsonEmail);
+                                    loginEditor.putString("phone",jsonPhone);
+                                    loginEditor.commit();
 
                                     Intent intent = new Intent(MainActivity.this, Home.class);
                                     intent.putExtra("username", username);
@@ -161,26 +177,20 @@ public class MainActivity extends AppCompatActivity
             }
         };
 
+
         ConnectivityManager cMgr = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cMgr.getActiveNetworkInfo();
 
         if (netInfo != null && netInfo.isConnected())
         {
-           /* if(isLogin)
-            {
-
-            }
-            else
-            {*/
             btnlogin.setOnClickListener(loginClick);
             btnsignup.setOnClickListener(signupclick);
-            /*}*/
+            tvNewAccount.setOnClickListener(signupclick);
         }
         else
         {
             Toast.makeText(MainActivity.this, "Check Your Internet Connection!", Toast.LENGTH_SHORT).show();
         }
-
 
     }
 

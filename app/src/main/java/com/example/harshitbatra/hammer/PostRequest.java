@@ -125,7 +125,7 @@ public class PostRequest extends AsyncTask<String, Void, String>
         if (context != null)
         {
             progressDialog = new ProgressDialog(context);
-            progressDialog.setMessage("Loading...");
+            progressDialog.setMessage("Please Wait Loading...");
             progressDialog.setCancelable(false);
             progressDialog.show();
         }
@@ -135,7 +135,7 @@ public class PostRequest extends AsyncTask<String, Void, String>
     public String makeConnectionForBid()
     {
         HashMap<String, String> hashMap = new HashMap<>(8);
-        hashMap.put("username",username);
+        hashMap.put("username", username);
         hashMap.put("itemname", itemName);
         hashMap.put("itemdescription", itemDescription);
         hashMap.put("bid", currentBid);
@@ -147,7 +147,7 @@ public class PostRequest extends AsyncTask<String, Void, String>
                 "\naddress = " + address + "\ncity = " + city + "\nbid = " + currentBid + "\nemail = " + "\nloginUser = " + loginuser +
                 "\nitemName = " + itemName + "\ntime = " + time + "\ncurrent value = " + newbid
                 + "\nurl = " + url);
-        return performPostCall(url,hashMap);
+        return performPostCall(url, hashMap);
         //"URL",username,itemName,desc,bid,time,tag,loginUser,currentValue
 
     }

@@ -9,126 +9,179 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#3b5998"
     tools:context="com.example.harshitbatra.hammer.SignupForm">
 
     <LinearLayout
         android:orientation="horizontal"
+        android:layout_margin="5dp"
+        android:background="@drawable/edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
-            android:text="Name : "
-            android:textSize="25dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        <ImageView
+            android:layout_margin="5dp"
+            android:src="@drawable/name"
+            android:layout_width="40dp"
+            android:layout_height="40dp"/>
         <EditText
+            android:layout_margin="5dp"
             android:id="@+id/etname"
+            android:layout_gravity="center"
             android:layout_weight="1"
             android:layout_width="0dp"
+            android:background="@android:color/transparent"
+            android:hint="Name"
             android:layout_height="wrap_content"/>
     </LinearLayout>
     <LinearLayout
+        android:layout_margin="5dp"
         android:orientation="horizontal"
+        android:background="@drawable/edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
-            android:text="Username : "
-            android:textSize="25dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:layout_margin="5dp"
+            android:src="@drawable/username"
+            android:layout_width="40dp"
+            android:layout_height="40dp"/>
+
         <EditText
+            android:layout_margin="5dp"
             android:id="@+id/etusername"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:hint="Username"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"/>
     </LinearLayout>
     <LinearLayout
+        android:layout_margin="5dp"
+        android:background="@drawable/edit_text"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
-            android:text="Address : "
-            android:textSize="25dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:layout_margin="5dp"
+            android:src="@drawable/location"
+            android:layout_width="40dp"
+            android:layout_height="40dp"/>
+
         <EditText
             android:id="@+id/etaddress"
+            android:hint="address"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:layout_margin="5dp"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"/>
     </LinearLayout>
     <LinearLayout
+        android:layout_margin="5dp"
+        android:background="@drawable/edit_text"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
-            android:text="City : "
-            android:textSize="25dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        <ImageView
+            android:src="@drawable/city"
+            android:layout_margin="5dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"/>
         <EditText
             android:id="@+id/etcity"
+            android:hint="City"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:layout_margin="5dp"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"/>
     </LinearLayout>
     <LinearLayout
+        android:layout_margin="5dp"
+        android:background="@drawable/edit_text"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
-            android:text="Phone : "
-            android:textSize="25dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        <ImageView
+            android:src="@drawable/phone"
+            android:layout_margin="5dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"/>
         <EditText
             android:id="@+id/etphone"
+            android:hint="Phone"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:layout_margin="5dp"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"/>
     </LinearLayout>
     <LinearLayout
+        android:layout_margin="5dp"
+        android:background="@drawable/edit_text"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
-            android:text="Email : "
-            android:textSize="25dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        <ImageView
+            android:src="@drawable/email"
+            android:layout_width="40dp"
+            android:layout_margin="5dp"
+            android:layout_height="40dp"/>
         <EditText
             android:id="@+id/etemail"
+            android:hint="Email"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:layout_margin="5dp"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"/>
     </LinearLayout>
     <LinearLayout
+        android:layout_margin="5dp"
+        android:background="@drawable/edit_text"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
-            android:text="Password : "
-            android:textSize="25dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        <ImageView
+            android:src="@drawable/password"
+            android:layout_margin="5dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"/>
         <EditText
             android:id="@+id/etpassword"
+            android:layout_margin="5dp"
+            android:layout_gravity="center"
             android:layout_weight="1"
             android:layout_width="0dp"
+            android:hint="Password"
+            android:background="@android:color/transparent"
             android:inputType="textPassword"
             android:layout_height="wrap_content"/>
     </LinearLayout>
     <LinearLayout
+        android:layout_margin="5dp"
+        android:background="@drawable/edit_text"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
-            android:text="Re-enter : "
-            android:textSize="25dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        <ImageView
+            android:src="@drawable/password"
+            android:layout_margin="5dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"/>
         <EditText
             android:id="@+id/etrepassword"
+            android:layout_margin="5dp"
+            android:layout_gravity="center"
             android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:hint="Re-enter Password"
             android:layout_width="0dp"
             android:inputType="textPassword"
             android:layout_height="wrap_content"/>
@@ -137,16 +190,10 @@
     <Button
         android:id="@+id/btncreate"
         android:text="CREATE"
+        android:background="@drawable/rounded_buttons"
         android:layout_marginTop="10dp"
         android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <TextView
-        android:id="@+id/tvwarnings"
-        android:text="Warnings"
-        android:textSize="25dp"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
 </LinearLayout>
