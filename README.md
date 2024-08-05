@@ -3,9 +3,12 @@ HammerTime is an Online Auctioning (or e-auctioning) android application. This i
 <img width="642" alt="image" src="https://github.com/user-attachments/assets/78697362-6a82-482a-82c6-1a323485a72b">
 
 <img width="671" alt="image" src="https://github.com/user-attachments/assets/7baca713-e26b-4475-80de-31932cad83a5">
-You can browse through categories like Antiques, Boats, Clothing and Accessories, Computer and Networking, Fashion (both men and women), Kids Fashion, Sports, Fitness and Outdoors, Daily Needs Item, Motors and Accessories, Books, Music, Gift Cards, Real-estate and Financial Services, and many more. When you are browsing you see something you like, you can click on that particular item and can view the details, description, sellers name, bid (at that time), last buyer (or bidder). You can see the details of last buyer (of bidder) of that particular item by just clicking or tapping on it. You can also bid to any item (which ever you want) which is showing the market (place where all the items are listed), by scrolling the 
+
 
 <img width="638" alt="image" src="https://github.com/user-attachments/assets/635da67e-8f47-40fe-a0c7-7f71ce7dcd82">
+
+
+You can browse through categories like Antiques, Boats, Clothing and Accessories, Computer and Networking, Fashion (both men and women), Kids Fashion, Sports, Fitness and Outdoors, Daily Needs Item, Motors and Accessories, Books, Music, Gift Cards, Real-estate and Financial Services, and many more. When you are browsing you see something you like, you can click on that particular item and can view the details, description, sellers name, bid (at that time), last buyer (or bidder). You can see the details of last buyer (of bidder) of that particular item by just clicking or tapping on it. You can also bid to any item (which ever you want) which is showing the market (place where all the items are listed), by scrolling the meter (which counts the amount of increment or the amount more than the previous bid) and pressing done and click on Bid button. 
 
 <img width="332" alt="image" src="https://github.com/user-attachments/assets/31ea610d-0149-4d62-bf05-9aad9582471c">
 
